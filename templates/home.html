@@ -23,96 +23,296 @@
       rel="stylesheet"
       type="text/css"
     />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      input[type="text"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+      }
+
+      label {
+        padding: 12px 12px 12px 0;
+        display: inline-block;
+      }
+
+      input[type="submit"] {
+        background-color: #04aa6d;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 10px;
+        padding-left: 9%;
+      }
+
+      .col-25 {
+        float: left;
+        width: 25%;
+        margin-top: 6px;
+        padding-left: 15%;
+      }
+
+      .col-75 {
+        float: left;
+        width: 45%;
+        padding-left: 15%;
+        margin-top: 6px;
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      .head {
+        margin-left: 36%;
+      }
+
+      .sub {
+        padding-top: 0.5%;
+        padding-right: 20%;
+      }
+
+      .pred-val {
+        padding-left: 36%;
+      }
+
+      /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+      @media screen and (max-width: 600px) {
+        .col-25,
+        .col-75,
+        input[type="submit"] {
+          height: 100%;
+          margin-top: 0;
+        }
+        .container {
+          height: 100%;
+        }
+      }
+    </style>
   </head>
 
   <body>
     <div class="login">
-      <h1>Boston House Price Prediction</h1>
+      <h2 class="head">Fertilizer quantity prediction</h2>
 
       <!-- Main Input For Receiving Query to our ML -->
-      <form action="{{ url_for('predict')}}" method="post">
-        <input
-          type="text"
-          name="CRIM"
-          placeholder="CRIM"
-          required="required"
-        /><br />
-        <input
-          type="text"
-          name="ZN"
-          placeholder="ZN"
-          required="required"
-        /><br />
-        <input
-          type="text"
-          name="INDUS"
-          placeholder="INDUS"
-          required="required"
-        /><br />
-        <input
-          type="text"
-          name="CHAS"
-          placeholder="CHAS"
-          required="required"
-        /><br />
-        <input
-          type="text"
-          name="NOX"
-          placeholder="NOX"
-          required="required"
-        /><br />
-        <input
-          type="text"
-          name="RM"
-          placeholder="RM"
-          required="required"
-        /><br />
-        <input
-          type="text"
-          name="Age"
-          placeholder="Age"
-          required="required"
-        /><br />
-        <input
-          type="text"
-          name="DIS"
-          placeholder="DIS"
-          required="required"
-        /><br />
-        <input
-          type="text"
-          name="RAD"
-          placeholder="RAD"
-          required="required"
-        /><br />
-        <input
-          type="text"
-          name="TAX"
-          placeholder="TAX"
-          required="required"
-        /><br />
-        <input
-          type="text"
-          name="PTRATIO"
-          placeholder="PTRATIO"
-          required="required"
-        /><br />
-        <input type="text" name="B" placeholder="B" required="required" /><br />
-        <input
-          type="text"
-          name="LSTAT"
-          placeholder="LSTAT"
-          required="required"
-        /><br />
+      <div class="container">
+        <form action="{{ url_for('predict')}}" method="post">
+          <div class="row">
+            <div class="col-25">
+              <label for="fname">Field-type</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                name="CRIM"
+                placeholder="Field-type"
+                required="required"
+              />
+            </div>
+          </div>
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Crop type</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                name="ZN"
+                placeholder="Crop_type"
+                required="required"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Soil ferticlity</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                name="INDUS"
+                placeholder="soil_ferticlity"
+                required="required"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Season</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                name="CHAS"
+                placeholder="season"
+                required="required"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Soil type</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                name="soil_type"
+                placeholder="Soil type"
+                required="required"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Nutrient value</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                name="RM"
+                placeholder="nutrient_value"
+                required="required"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Fertilizer</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                name="Age"
+                placeholder="fertilizer"
+                required="required"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Pesticides</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                name="DIS"
+                placeholder="pesticedes"
+                required="required"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Rain-Fall</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                name="RAD"
+                placeholder="rain_fall"
+                required="required"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Location</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                name="TAX"
+                placeholder="location"
+                required="required"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Water supply</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                name="PTRATIO"
+                placeholder="water_supply"
+                required="required"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Temperature</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                name="B"
+                placeholder="temperature"
+                required="required"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Field size</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                name="LSTAT"
+                placeholder="field_size"
+                required="required"
+              />
+            </div>
+          </div>
+
+          <!-- <button type="submit" class="btn btn-primary btn-block btn-large">
           Predict
-        </button>
-      </form>
+        </button> -->
+          <div class="sub">
+            <input type="submit" value="Submit" />
+          </div>
+        </form>
 
-      <br />
-      <br />
+        <br />
+        <br />
+      </div>
     </div>
-    {{prediction_text}}
+    <p class="pred-val">{{value}} {{prediction_text}}</p>
   </body>
 </html>
