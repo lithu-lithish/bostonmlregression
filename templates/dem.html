@@ -1,7 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>ML API</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Arimo"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Hind:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+      rel="stylesheet"
+      type="text/css"
+    />
     <style>
       * {
         box-sizing: border-box;
@@ -39,18 +60,25 @@
       .container {
         border-radius: 5px;
         background-color: #f2f2f2;
-        padding: 20px;
+        padding: 10px;
+        padding-left: 9%;
+      }
+
+      .left {
+        margin-right: 50%;
       }
 
       .col-25 {
         float: left;
         width: 25%;
         margin-top: 6px;
+        padding-left: 15%;
       }
 
       .col-75 {
         float: left;
-        width: 75%;
+        width: 45%;
+        padding-left: 15%;
         margin-top: 6px;
       }
 
@@ -60,196 +88,244 @@
         display: table;
         clear: both;
       }
+      .head {
+        margin-left: 36%;
+      }
+
+      .sub {
+        padding-top: 0.5%;
+        padding-right: 20%;
+      }
+
+      .pred-val {
+        padding-left: 36%;
+      }
+
+      /* screen split */
 
       /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
       @media screen and (max-width: 600px) {
         .col-25,
         .col-75,
         input[type="submit"] {
-          width: 100%;
+          height: 100%;
           margin-top: 0;
+        }
+        .container {
+          height: 100%;
         }
       }
     </style>
   </head>
+
   <body>
-    <h2>Responsive Form</h2>
-    <p>
-      Resize the browser window to see the effect. When the screen is less than
-      600px wide, make the two columns stack on top of each other instead of
-      next to each other.
-    </p>
+    <div class="login">
+      <h2 class="head">Fertilizer quantity prediction</h2>
 
-    <div class="container">
-      <form action="/action_page.php">
-        <div class="row">
-          <div class="col-25">
-            <label for="fname">Field-type</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              name="CRIM"
-              placeholder="CRIM"
-              required="required"
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Crop type</label>
-          </div>
-          <div class="col-75">
-            <input type="text" name="ZN" placeholder="ZN" required="required" />
-          </div>
-        </div>
+      <!-- Main Input For Receiving Query to our ML -->
+      <div class="container">
+        <form action="{{ url_for('predict')}}" method="post">
+          <!-- mm -->
+          <div class="left">
+            <div class="row">
+              <div class="col-25">
+                <label for="fname">Field-type</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="CRIM"
+                  placeholder="Field-type"
+                  required="required"
+                />
+              </div>
+            </div>
 
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Soil ferticlity</label>
-          </div>
-          <div class="col-75"></div>
-        </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Crop type</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="ZN"
+                  placeholder="Crop_type"
+                  required="required"
+                />
+              </div>
+            </div>
 
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Season</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              name="INDUS"
-              placeholder="INDUS"
-              required="required"
-            />
-          </div>
-        </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Soil fertility</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="INDUS"
+                  placeholder="soil_fertility"
+                  required="required"
+                />
+              </div>
+            </div>
 
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Soil type</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              name="CHAS"
-              placeholder="CHAS"
-              required="required"
-            />
-          </div>
-        </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Season</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="CHAS"
+                  placeholder="season"
+                  required="required"
+                />
+              </div>
+            </div>
 
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">nutrient value</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              name="NOX"
-              placeholder="NOX"
-              required="required"
-            />
-          </div>
-        </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Moisture</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="soil_type"
+                  placeholder="Soil type"
+                  required="required"
+                />
+              </div>
+            </div>
 
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Fertilizer</label>
-          </div>
-          <div class="col-75">
-            <input type="text" name="RM" placeholder="RM" required="required" />
-          </div>
-        </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Total Dissolve Solid (TDS)</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="RM"
+                  placeholder="(TDS)"
+                  required="required"
+                />
+              </div>
+            </div>
 
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Pesticedes</label>
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">temperature</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="Age"
+                  placeholder="temperature"
+                  required="required"
+                />
+              </div>
+            </div>
           </div>
-          <div class="col-75">
-            <input
-              type="text"
-              name="DIS"
-              placeholder="DIS"
-              required="required"
-            />
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Rain-Fall</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              name="RAD"
-              placeholder="RAD"
-              required="required"
-            />
-          </div>
-        </div>
+          <!-- mm -->
 
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Geographic-location</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              name="CHAS"
-              placeholder="CHAS"
-              required="required"
-            />
-          </div>
-        </div>
+          <div class="right">
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">plant stage</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="DIS"
+                  placeholder="plant stage"
+                  required="required"
+                />
+              </div>
+            </div>
 
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">water supply</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              name="CHAS"
-              placeholder="CHAS"
-              required="required"
-            />
-          </div>
-        </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Rain-Fall</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="RAD"
+                  placeholder="rain_fall"
+                  required="required"
+                />
+              </div>
+            </div>
 
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">temperature</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              name="CHAS"
-              placeholder="CHAS"
-              required="required"
-            />
-          </div>
-        </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">primary nutrient (NPK)</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="TAX"
+                  placeholder="primary nutrient"
+                  required="required"
+                />
+              </div>
+            </div>
 
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Field size</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              name="CHAS"
-              placeholder="CHAS"
-              required="required"
-            />
-          </div>
-        </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Secondary nutrient (CMS)</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="PTRATIO"
+                  placeholder="Secondary nutrient"
+                  required="required"
+                />
+              </div>
+            </div>
 
-        <div class="row">
-          <input type="submit" value="Submit" />
-        </div>
-      </form>
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Micro nutrients</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="B"
+                  placeholder="micro_nutrients"
+                  required="required"
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Field size</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="LSTAT"
+                  placeholder="field_size"
+                  required="required"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- <button type="submit" class="btn btn-primary btn-block btn-large">
+          Predict
+        </button> -->
+          <div class="sub">
+            <input type="submit" value="Submit" />
+          </div>
+        </form>
+
+        <br />
+        <br />
+      </div>
     </div>
+    <p class="pred-val">{{value}} {{prediction_text}}</p>
   </body>
 </html>

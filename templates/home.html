@@ -64,17 +64,34 @@
         padding-left: 9%;
       }
 
+      .left {
+        margin-right: 50%;
+        padding-right: 5%;
+      }
+      .right .col-25 {
+        width: 45%;
+      }
+      .right .col-75 {
+        width: 55%;
+      }
+
+      .right {
+        margin-left: 40%;
+        position: absolute;
+        margin-top: -23.5%;
+      }
+
       .col-25 {
         float: left;
-        width: 25%;
+        width: 35%;
         margin-top: 6px;
         padding-left: 15%;
       }
 
       .col-75 {
         float: left;
-        width: 45%;
-        padding-left: 15%;
+        width: 40%;
+        padding-left: 11%;
         margin-top: 6px;
       }
 
@@ -86,6 +103,8 @@
       }
       .head {
         margin-left: 36%;
+        padding-bottom: 1%;
+        padding-top: 1%;
       }
 
       .sub {
@@ -97,8 +116,10 @@
         padding-left: 36%;
       }
 
+      /* screen split */
+
       /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-      @media screen and (max-width: 600px) {
+      @media screen and (max-width: 800px) {
         .col-25,
         .col-75,
         input[type="submit"] {
@@ -107,6 +128,9 @@
         }
         .container {
           height: 100%;
+        }
+        .right {
+          margin-top: 5%;
         }
       }
     </style>
@@ -119,185 +143,192 @@
       <!-- Main Input For Receiving Query to our ML -->
       <div class="container">
         <form action="{{ url_for('predict')}}" method="post">
-          <div class="row">
-            <div class="col-25">
-              <label for="fname">Field-type</label>
+          <!-- mm -->
+          <div class="left">
+            <div class="row">
+              <div class="col-25">
+                <label for="fname">Field-type</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="CRIM"
+                  placeholder="Field-type"
+                  required="required"
+                />
+              </div>
             </div>
-            <div class="col-75">
-              <input
-                type="text"
-                name="CRIM"
-                placeholder="Field-type"
-                required="required"
-              />
+
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Crop type</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="ZN"
+                  placeholder="Crop_type"
+                  required="required"
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Soil fertility</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="INDUS"
+                  placeholder="soil_fertility"
+                  required="required"
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Season</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="CHAS"
+                  placeholder="season"
+                  required="required"
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Moisture</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="soil_type"
+                  placeholder="Soil type"
+                  required="required"
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Total Dissolve Solid (TDS)</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="RM"
+                  placeholder="(TDS)"
+                  required="required"
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">temperature</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="Age"
+                  placeholder="temperature"
+                  required="required"
+                />
+              </div>
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-25">
-              <label for="lname">Crop type</label>
-            </div>
-            <div class="col-75">
-              <input
-                type="text"
-                name="ZN"
-                placeholder="Crop_type"
-                required="required"
-              />
-            </div>
-          </div>
+          <!-- mm -->
 
-          <div class="row">
-            <div class="col-25">
-              <label for="lname">Soil fertility</label>
+          <div class="right">
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">plant stage</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="DIS"
+                  placeholder="plant stage"
+                  required="required"
+                />
+              </div>
             </div>
-            <div class="col-75">
-              <input
-                type="text"
-                name="INDUS"
-                placeholder="soil_fertility"
-                required="required"
-              />
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-25">
-              <label for="lname">Season</label>
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Rain-Fall</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="RAD"
+                  placeholder="rain_fall"
+                  required="required"
+                />
+              </div>
             </div>
-            <div class="col-75">
-              <input
-                type="text"
-                name="CHAS"
-                placeholder="season"
-                required="required"
-              />
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-25">
-              <label for="lname">Moisture</label>
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">primary nutrient (NPK)</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="TAX"
+                  placeholder="primary nutrient"
+                  required="required"
+                />
+              </div>
             </div>
-            <div class="col-75">
-              <input
-                type="text"
-                name="soil_type"
-                placeholder="Soil type"
-                required="required"
-              />
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-25">
-              <label for="lname">Total Dissolve Solid (TDS)</label>
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Secondary nutrient (CMS)</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="PTRATIO"
+                  placeholder="Secondary nutrient"
+                  required="required"
+                />
+              </div>
             </div>
-            <div class="col-75">
-              <input
-                type="text"
-                name="RM"
-                placeholder="(TDS)"
-                required="required"
-              />
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-25">
-              <label for="lname">temperature</label>
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Micro nutrients</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="B"
+                  placeholder="micro_nutrients"
+                  required="required"
+                />
+              </div>
             </div>
-            <div class="col-75">
-              <input
-                type="text"
-                name="Age"
-                placeholder="temperature"
-                required="required"
-              />
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-25">
-              <label for="lname">plant stage</label>
-            </div>
-            <div class="col-75">
-              <input
-                type="text"
-                name="DIS"
-                placeholder="plant stage"
-                required="required"
-              />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-25">
-              <label for="lname">Rain-Fall</label>
-            </div>
-            <div class="col-75">
-              <input
-                type="text"
-                name="RAD"
-                placeholder="rain_fall"
-                required="required"
-              />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-25">
-              <label for="lname">primary nutrient (NPK)</label>
-            </div>
-            <div class="col-75">
-              <input
-                type="text"
-                name="TAX"
-                placeholder="primary nutrient"
-                required="required"
-              />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-25">
-              <label for="lname">Secondary nutrient (CMS)</label>
-            </div>
-            <div class="col-75">
-              <input
-                type="text"
-                name="PTRATIO"
-                placeholder="Secondary nutrient"
-                required="required"
-              />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-25">
-              <label for="lname">Micro nutrients</label>
-            </div>
-            <div class="col-75">
-              <input
-                type="text"
-                name="B"
-                placeholder="micro_nutrients"
-                required="required"
-              />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-25">
-              <label for="lname">Field size</label>
-            </div>
-            <div class="col-75">
-              <input
-                type="text"
-                name="LSTAT"
-                placeholder="field_size"
-                required="required"
-              />
+            <div class="row">
+              <div class="col-25">
+                <label for="lname">Field size</label>
+              </div>
+              <div class="col-75">
+                <input
+                  type="text"
+                  name="LSTAT"
+                  placeholder="field_size"
+                  required="required"
+                />
+              </div>
             </div>
           </div>
 
