@@ -116,6 +116,12 @@
         padding-left: 36%;
       }
 
+      .select {
+        background-color: #f2f2f2;
+        border: none;
+        margin-left: -14px;
+      }
+
       /* screen split */
 
       /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
@@ -147,7 +153,14 @@
           <div class="left">
             <div class="row">
               <div class="col-25">
-                <label for="fname">Field-type</label>
+                <!-- <label for="fname">Field-type</label> -->
+                <select name="cars" class="select">
+                  <option value="" class="select">Field Type</option>
+                  <option value="volvo" class="select">silt</option>
+                  <option value="saab" class="select">peat</option>
+                  <option value="opel" class="select">loam</option>
+                  <option value="audi" class="select">chalk</option>
+                </select>
               </div>
               <div class="col-75">
                 <input
@@ -189,7 +202,14 @@
 
             <div class="row">
               <div class="col-25">
-                <label for="lname">Season</label>
+                <select name="cars" class="select">
+                  <option value="" class="select">Season</option>
+                  <option value="saab" class="select">spring</option>
+                  <option value="opel" class="select">summer</option>
+                  <option value="volvo" class="select">monsoon</option>
+                  <option value="audi" class="select">autumn</option>
+                  <option value="audi" class="select">winter</option>
+                </select>
               </div>
               <div class="col-75">
                 <input
@@ -209,7 +229,7 @@
                 <input
                   type="text"
                   name="soil_type"
-                  placeholder="Soil type"
+                  placeholder="Moisture"
                   required="required"
                 />
               </div>
@@ -319,7 +339,7 @@
 
             <div class="row">
               <div class="col-25">
-                <label for="lname">Field size</label>
+                <label for="lname">Field size (cents)</label>
               </div>
               <div class="col-75">
                 <input
